@@ -1,16 +1,40 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ header }}</h1>
+    <div v-for="contact in contacts" v-bind:key="contact">
+      <div>
+        {{ contact.name }} <span>{{ contact.phone_number }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Phonebook',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      header: 'Phonebook',
+      contacts: null
     };
+  },
+  created() {
+    this.getContacts()
+  },
+  methods:{
+    getContacts() {
+      axios.get('http://www.mocky.io/v2/581335f71000004204abaf83')
+      .then(response => {
+        this.contacts = response.data.contacts;
+        // this.createPhonebook(this.contacts)
+      })
+      .catch(error => {
+        console.error(error);
+      })
+    },
+
   },
 };
 </script>
