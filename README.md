@@ -1,4 +1,4 @@
-# Phonebook Interfeace
+# Phonebook Interface
 
 Your task is to build a single page application that will play the role of a phone book.  
 
